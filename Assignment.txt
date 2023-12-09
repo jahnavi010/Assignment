@@ -1,0 +1,33 @@
+// Define the analog pin for LM35 sensor
+const int lm35Pin = A0;
+
+// Define the onboard LED pin
+const int ledPin = 13;
+
+void setup() {
+  // Set the LED pin as an output
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Read the temperature from the LM35 sensor
+  int temperature = analogRead(lm35Pin);
+
+  // Convert the analog reading to temperature in degrees Celsius
+  float celsius = (temperature * 0.0048828125) * 100;
+
+  // Check temperature and control LED blinking
+  if (celsius < 30) {
+    // If temperature is below 30 degrees Celsius, blink every 250 milliseconds
+    digitalWrite(ledPin, HIGH);
+    delay(250);
+    digitalWrite(ledPin, LOW);
+    delay(250);
+  } else {
+    // If temperature is above or equal to 30 degrees Celsius, blink every 500 milliseconds
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+  }
+}
